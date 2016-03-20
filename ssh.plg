@@ -2,7 +2,7 @@
 
 <!DOCTYPE PLUGIN [
 <!ENTITY name       "ssh">
-<!ENTITY author     "Wcomjf-io">
+<!ENTITY author     "comjf-io">
 <!ENTITY version    "2015.04.25">
 <!ENTITY category   "Network Services">
 <!ENTITY pluginURL  "https://raw.github.com/comjf-io/unraid-v6-plugins/testing/&name;.plg">
@@ -17,7 +17,7 @@
          pluginURL="&pluginURL;">
 
 <!--
-Copyright 2014, Rich Manton (comjf-io)
+Copyright 2014, Rich Manton (overbyrn)
 
 This Plugin extends the core SSH support built into unRAID v6.
 
