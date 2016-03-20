@@ -5,7 +5,7 @@
 <!ENTITY author     "Wcomjf-io">
 <!ENTITY version    "2015.04.25">
 <!ENTITY category   "Network Services">
-<!ENTITY pluginURL  "https://raw.github.com/comjf-io/unraid-v6-plugins/master/&name;.plg">
+<!ENTITY pluginURL  "https://raw.github.com/comjf-io/unraid-v6-plugins/testing/&name;.plg">
 <!ENTITY packageURL "https://github.com/comjf-io/unraid-v6-plugins/releases/download/&name;">
 <!ENTITY devplugin  "false">
 ]>
@@ -177,7 +177,7 @@ $sshversion = shell_exec("/usr/bin/ssh -V 2>&1");
   <div style="border: 0px solid black;">
     <span class="left">
       <p>
-        OpenSSH Application Version: <span class="green-text"><b><?=$sshversion?></b></span>   
+        OpenSSH Application Version: <span class="green-text"><b><?=$sshversion?></b></span>
       </p>
 	</span>
   </div>
@@ -336,7 +336,7 @@ $sshversion = shell_exec("/usr/bin/ssh -V 2>&1");
 
     <div align="center">
       <hr size="3" align="center" width="75%" color="grey" style="margin-top:20px;margin-bottom:18px">
-      <input type="submit" name="runCmd" value="Apply"><button type="button" onClick="done();">Done</button>      
+      <input type="submit" name="runCmd" value="Apply"><button type="button" onClick="done();">Done</button>
     </div>
   </form>
   <br></br>
@@ -374,7 +374,7 @@ function validateForm() {
 
 function checkRUNNING(form) {
     // dont disable arg1 which is the service enable/disable. only disable subsequent fields
-    // note: "disabled" elements do not get submitted. the below will cause these field values to be empty upon apply. a workaround is to 
+    // note: "disabled" elements do not get submitted. the below will cause these field values to be empty upon apply. a workaround is to
     //       implement a validation function which is called upon form submit which amongst other things can re-enable the fields
     if ("<?=$ssh_running;?>" == "yes") {
     form.arg2.disabled = true;
@@ -416,7 +416,7 @@ ssh_start()
     #echo "SSH already running"
     #sleep 1
     return
-  fi   
+  fi
    
   echo "Starting SSH..."
   sleep 1
@@ -428,13 +428,13 @@ ssh_start()
 }
 
 ssh_stop()
-{ 
+{
   # no-op if already running
   if [ ! -f /var/run/sshd.pid ]; then
     #echo "SSH already stopped"
     #sleep 1
     return
-  fi   
+  fi
 
   echo "Stopping SSH..."
   sleep 1
@@ -457,7 +457,7 @@ ssh_restart() {
   fi
   sleep 1
   ssh_start
-}  
+}
 
 ssh_buttonstart()
 {
@@ -512,7 +512,7 @@ write_config()
 
       # Check for existance of "authorised_keys" file at /boot/config/plugin/ssh/{someuser}.  Copy to /home/{someuser} if found.  Enables
       # user to authenticate with private / public key pair.
-      # NB: if file is not found, an empty directory path will be created on the flash drive, thus making it slightly easier for unraid user 
+      # NB: if file is not found, an empty directory path will be created on the flash drive, thus making it slightly easier for unraid user
       # to see what/where to maintain key files
       # ** IT IS CURRENTLY THE USERS RESPONSIBILITY TO PRE-GENERATE A PUBLIC/PRIVATE KEYPAIR **
       if [ -f /boot/config/plugins/ssh/$USERTEMP/.ssh/authorized_keys ]; then
@@ -526,7 +526,7 @@ write_config()
         cp /boot/config/plugins/ssh/read_me.txt /boot/config/plugins/ssh/$USERTEMP/.ssh/read_me.txt 2>/dev/null
       fi
     done
-  fi 
+  fi
   
   # check if PermitRootLogin came thru as "YES", in which case check for authorized_keys file in plugin sub-dir.
   if [[ $PERMITROOTLOGIN = "yes" ]]; then
@@ -535,8 +535,8 @@ write_config()
 	  cp --preserve=timestamps -p /boot/config/plugins/ssh/root/.ssh/authorized_keys /root/.ssh/authorized_keys
       chmod 700 /root/.ssh
       chmod 600 /root/.ssh/authorized_keys
-      chown root:root /root/.ssh/authorized_keys  
-	fi  
+      chown root:root /root/.ssh/authorized_keys
+	fi
   fi
  
   # the host keys get created during plugin install script and if not present are generated
@@ -563,7 +563,7 @@ write_config()
 
   # preserve live /etc/sshd_config file on flash. When unRAID reboots, the standard ssh startup baked into unRAID v6 will
   # copy all files from /boot/config/ssh to /etc/ssh. This ensures the correct config is maintained after a reboot. Failure
-  # to do this will result in the user having to go into SSH plugin webgui page, stopping and starting SSH in order to 
+  # to do this will result in the user having to go into SSH plugin webgui page, stopping and starting SSH in order to
   # produce the same effect
   cp -f /etc/ssh/sshd_config /boot/config/ssh/sshd_config
 
