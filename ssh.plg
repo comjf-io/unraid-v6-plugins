@@ -6,7 +6,7 @@
 <!ENTITY version    "2015.04.25">
 <!ENTITY category   "Network Services">
 <!ENTITY pluginURL  "https://raw.github.com/comjf-io/unraid-v6-plugins/testing/&name;.plg">
-<!ENTITY packageURL "https://github.com/comjf-io/unraid-v6-plugins/releases/download/&name;">
+<!ENTITY packageURL "https://github.com/overbyrn/unraid-v6-plugins/releases/download/&name;">
 <!ENTITY devplugin  "false">
 ]>
 
